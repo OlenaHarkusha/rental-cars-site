@@ -4,8 +4,9 @@ import "modern-normalize";
 export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
-  padding: 20px;
+  padding: 0px;
   font-family: 'Manrope', sans-serif;
+  font-size: ${(p) => p.theme.fontSizes.s};
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
