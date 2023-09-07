@@ -12,15 +12,18 @@ export const Header = styled.header`
   left: 0;
   width: 100%;
   box-shadow: 0px 2px 7px 0px rgba(18, 20, 23, 0.2);
-  /* display: flex; */
+  background-color: #ffffff33;
 `;
 
 export const Navigation = styled.nav`
-  width: 320px;
   padding: 20px 20px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+
+  @media ${devices.xs} {
+    width: 320px;
+  }
 
   @media ${devices.md} {
     justify-content: space-between;
@@ -45,7 +48,7 @@ export const NavBox = styled.div`
 
 export const HeaderLink = styled(NavLink)`
   color: ${(p) => p.theme.colors.mainFont};
-  font-size: 24px;
+  font-size: 18px;
   font-weight: ${(p) => p.theme.fontWeights.semiBold};
   text-transform: uppercase;
   transition: transform 250ms ease-in-out;
@@ -54,5 +57,9 @@ export const HeaderLink = styled(NavLink)`
   &:focus {
     transform: scale(1.1);
     text-shadow: 0 0 10px #ffffff;
+  }
+
+  @media ${devices.xs} {
+    font-size: 24px;
   }
 `;
