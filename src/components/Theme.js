@@ -11,7 +11,13 @@ export const theme = {
     normal: "12px",
     large: "24px",
   },
-  fontSizes: { xs: "12px", s: "14px", m: "16px", l: "18px", xl: "24px" },
+  fontSizes: {
+    xs: "12px",
+    s: "14px",
+    m: "16px",
+    l: "18px",
+    xl: "24px",
+  },
   fontWeights: {
     normal: 400,
     medium: 500,
