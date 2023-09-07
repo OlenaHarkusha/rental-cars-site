@@ -18,11 +18,23 @@ export const Box = styled.div`
 
 export const Container = styled.div`
   padding: 150px 10px 0 10px;
-  width: 320px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media ${devices.xs} {
+    width: 320px;
+  }
+
+  @media ${devices.md} {
+    width: 768px;
+  }
+
+  @media ${devices.xl} {
+    width: 1280px;
+  }
 `;
 
 export const Text = styled.h1`
@@ -31,6 +43,10 @@ export const Text = styled.h1`
   text-align: center;
   margin-bottom: 20px;
   text-shadow: 0 0 10px #ffffff;
+
+  @media ${devices.md} {
+    font-size: 32px;
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -44,6 +60,10 @@ export const StyledLink = styled(NavLink)`
   padding: 10px 20px;
   background-color: ${(p) => p.theme.colors.accent};
   border-radius: ${(p) => p.theme.radii.normal};
+
+  @media ${devices.md} {
+    font-size: 32px;
+  }
 
   &:hover,
   &:focus {
