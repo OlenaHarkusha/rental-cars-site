@@ -7,7 +7,12 @@ export const favoritesSlice = createSlice({
   },
   reducers: {
     addFavorite(state, action) {
-      state.favorites = state.favorites.push(action.payload);
+      const isInFavorites = state.favorites.findIndex((fav) => fav.id === action.payload.id);
+      if (isInFavorites === -1) {
+        state.favorites.push(action.payload);
+      } else {
+        state.favorites = state.favorites.filter((fav) => fav.id !== action.payload.id);
+      }
     },
     removeFavorite(state, action) {
       state.favorites = state.favorites.filter((fav) => fav.id === action.payload.id);
