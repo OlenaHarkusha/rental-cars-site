@@ -23,7 +23,7 @@ export const catalogSlice = createSlice({
       .addCase(fetchAdverts.rejected, handleRejected)
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.adverts = action.payload;
+        state.adverts = [...state.adverts, ...action.payload];
         state.error = null;
       });
   },
