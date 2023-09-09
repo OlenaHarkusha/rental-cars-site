@@ -26,7 +26,6 @@ export const catalogSlice = createSlice({
         state.isLoading = false;
         state.adverts = action.payload;
         state.error = null;
-        // state.fetchedPage = action.payload.page;
       });
   },
 });
