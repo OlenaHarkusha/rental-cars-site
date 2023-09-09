@@ -1,14 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as IconNormal } from "../../Images/normal.svg";
+import { ReactComponent as IconActive } from "../../Images/active.svg";
+
 import PropTypes from "prop-types";
 import { addFavorite } from "../../redux/favoritesSlice/favoritesSlice";
 import { useState } from "react";
 import { Modal } from "../Modal/Modal";
+import { selectFavorites } from "../../redux/selectors";
+import { Button, CatalogImage, DescriptionList, FavButton, Item, ModelWrap, Title, TitleWrapper } from "./CatalogItem.styled";
 
 export const CatalogItem = ({ advert }) => {
+  const { id, img, description, make, year, model, rentalPrice, address, rentalCompany, type, mileage, functionalities } = advert;
   const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.some((favorite) => favorite.id === id);
   const [showModal, setShowModal] = useState(false);
-  const { img, description, make, year, model, rentalPrice, address, rentalCompany, type, mileage, functionalities } = advert;
   // eslint-disable-next-line react/prop-types
   const data = address.split(",");
   const city = data[1];
@@ -23,16 +29,19 @@ export const CatalogItem = ({ advert }) => {
   };
 
   return (
-    <li>
-      <img src={img} alt={description} />
-      <button type="button" onClick={favBtnClickHandle}>
-        <IconNormal />
-      </button>
-      <h2>
-        {make} {model}, {year}
-      </h2>
-      <p>{rentalPrice}</p>
-      <ul>
+    <Item>
+      <CatalogImage src={img} alt={description} />
+      <FavButton type="button" onClick={favBtnClickHandle}>
+        {isFavorite ? <IconActive /> : <IconNormal />}
+      </FavButton>
+      <TitleWrapper>
+        <Title>
+          {make}
+          <ModelWrap> {model}</ModelWrap>, {year}
+        </Title>
+        <p>{rentalPrice}</p>
+      </TitleWrapper>
+      <DescriptionList>
         <li>{city}</li>
         <li>{country}</li>
         <li>{rentalCompany}</li>
@@ -40,17 +49,18 @@ export const CatalogItem = ({ advert }) => {
         <li>{model}</li>
         <li>{mileage}</li>
         <li>{functionalities[0]}</li>
-      </ul>
-      <button type="button" onClick={toggleModal}>
+      </DescriptionList>
+      <Button type="button" onClick={toggleModal}>
         Learn more
-      </button>
-      {showModal && <Modal advert={advert} />}
-    </li>
+      </Button>
+      {showModal && <Modal advert={advert} showModal={showModal} toggleModal={toggleModal} />}
+    </Item>
   );
 };
 
 CatalogItem.propTypes = {
   advert: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     img: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     make: PropTypes.string.isRequired,
