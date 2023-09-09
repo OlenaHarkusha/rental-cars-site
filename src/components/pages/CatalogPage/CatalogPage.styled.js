@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 
   @media ${devices.xl} {
-    padding: 100px 0 0 0;
+    padding: 100px 0 150px 0;
     width: 1280px;
   }
 `;
