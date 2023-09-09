@@ -7,30 +7,29 @@ import { FilterBar } from "../../FilterBar/FilterBar";
 import { Container } from "./CatalogPage.styled";
 import { Catalog } from "../../Catalog/Catalog";
 import { LoadMoreButton } from "../../LoadMoreButton/LoadMoreButton";
-import { selectAdverts, selectfetchedPage } from "../../../redux/selectors";
+import { selectFilteredAverts } from "../../../redux/selectors";
 
 export const CatalogPage = () => {
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  const adverts = useSelector(selectAdverts);
-  const fetchedPage = useSelector(selectfetchedPage);
+  const advertsPerPage = 8;
+  const adverts = useSelector(selectFilteredAverts);
 
-  // const isLoading = useSelector(selectIsLoading);
+  const paginatedAdverts = adverts.slice(0, page * advertsPerPage);
 
   const btnClickHandle = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
   useEffect(() => {
-    if (fetchedPage < page) {
-      dispatch(fetchAdverts(page));
-    }
-  }, [dispatch, fetchedPage, page]);
+    dispatch(fetchAdverts(page));
+  }, [dispatch, page]);
 
   return (
     <Container>
       <FilterBar />
-      <Catalog adverts={adverts} />
+      <Catalog adverts={paginatedAdverts} />
       {50 / 8 > page && <LoadMoreButton onClick={btnClickHandle} />}
     </Container>
   );
