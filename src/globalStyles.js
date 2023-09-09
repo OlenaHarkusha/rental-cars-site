@@ -7,6 +7,7 @@ body {
   padding: 0px;
   font-family: 'Manrope', sans-serif;
   font-size: ${(p) => p.theme.fontSizes.s};
+  color: ${(p) => p.theme.colors.mainFont};
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
