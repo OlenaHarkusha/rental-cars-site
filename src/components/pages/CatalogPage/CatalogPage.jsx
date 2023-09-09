@@ -7,12 +7,14 @@ import { FilterBar } from "../../FilterBar/FilterBar";
 import { Container } from "./CatalogPage.styled";
 import { Catalog } from "../../Catalog/Catalog";
 import { LoadMoreButton } from "../../LoadMoreButton/LoadMoreButton";
-import { selectAdverts } from "../../../redux/selectors";
+import { selectAdverts, selectfetchedPage } from "../../../redux/selectors";
 
 export const CatalogPage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const adverts = useSelector(selectAdverts);
+  const fetchedPage = useSelector(selectfetchedPage);
+
   // const isLoading = useSelector(selectIsLoading);
 
   const btnClickHandle = () => {
@@ -20,8 +22,10 @@ export const CatalogPage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAdverts(page));
-  }, [dispatch, page]);
+    if (fetchedPage < page) {
+      dispatch(fetchAdverts(page));
+    }
+  }, [dispatch, fetchedPage, page]);
 
   return (
     <Container>

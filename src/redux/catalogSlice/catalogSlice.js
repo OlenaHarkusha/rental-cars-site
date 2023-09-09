@@ -14,6 +14,7 @@ export const catalogSlice = createSlice({
   name: "catalog",
   initialState: {
     adverts: [],
+    fetchedPage: 0,
     isLoading: false,
     error: null,
   },
@@ -23,8 +24,9 @@ export const catalogSlice = createSlice({
       .addCase(fetchAdverts.rejected, handleRejected)
       .addCase(fetchAdverts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.adverts = [...state.adverts, ...action.payload];
+        state.adverts = [...state.adverts, ...action.payload.data];
         state.error = null;
+        state.fetchedPage = action.payload.page;
       });
   },
 });
