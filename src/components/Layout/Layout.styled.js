@@ -10,9 +10,10 @@ export const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10000;
   width: 100%;
   box-shadow: 0px 2px 7px 0px rgba(18, 20, 23, 0.2);
-  background-color: #ffffff33;
+  background-color: #ffffffcc;
 `;
 
 export const Navigation = styled.nav`
