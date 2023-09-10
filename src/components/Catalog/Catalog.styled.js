@@ -4,7 +4,7 @@ import { devices } from "../constants/devices";
 export const CatalogContainer = styled.div`
   width: 100%;
   padding: 0 10px;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const CatalogList = styled.ul`
