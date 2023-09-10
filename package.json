@@ -2,6 +2,7 @@
   "name": "rental-cars-site",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://OlenaHarkusha.github.io/rental-cars-site/",
   "type": "module",
   "scripts": {
     "dev": "vite",
